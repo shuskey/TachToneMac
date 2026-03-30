@@ -22,8 +22,8 @@ targets:
         SWIFT_VERSION: "6.0"
         PRODUCT_BUNDLE_IDENTIFIER: com.tachtone.TachToneMac
     dependencies:
-      - sdk: IOKit.framework
-      - sdk: Network.framework
+      - sdk: IOKit.framework  # DiskPoller (Task 5), GpuPoller (Task 6)
+      - sdk: Network.framework  # HonkListener (Task 7)
 
   TachToneMacTests:
     type: bundle.unit-test
