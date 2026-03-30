@@ -32,6 +32,18 @@ final class GpuPollerTests: XCTestCase {
         XCTAssertEqual(pct, 75.0, accuracy: 0.01)
     }
 
+    func test_parsePercent_fromDictionary_3d() {
+        let dict: [String: Any] = ["3D(%)": 55]
+        let pct = GpuPoller.parseUtilization(from: dict)
+        XCTAssertEqual(pct, 55.0, accuracy: 0.01)
+    }
+
+    func test_parsePercent_fromDictionary_utilization() {
+        let dict: [String: Any] = ["Utilization(%)": 88]
+        let pct = GpuPoller.parseUtilization(from: dict)
+        XCTAssertEqual(pct, 88.0, accuracy: 0.01)
+    }
+
     func test_parsePercent_missingKey_returnsZero() {
         let pct = GpuPoller.parseUtilization(from: [:])
         XCTAssertEqual(pct, 0.0)

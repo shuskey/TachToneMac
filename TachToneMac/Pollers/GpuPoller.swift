@@ -1,9 +1,10 @@
 import Foundation
 import IOKit
 
-// SAFETY: GpuPoller has no mutable state between polls. `pollOnce()` is
-// safe to call from any thread. `start()` must be called at most once —
-// calling it again creates a duplicate background task.
+// SAFETY: The only mutable state is `started`, which is written once by
+// `start()` on the calling thread. There is no per-poll cached state.
+// `pollOnce()` is safe to call from any thread. `start()` must be called
+// at most once — calling it again creates a duplicate background task.
 final class GpuPoller: @unchecked Sendable {
     private let state: SharedState
     private var started = false
