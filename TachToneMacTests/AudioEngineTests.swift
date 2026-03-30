@@ -7,7 +7,7 @@ final class AudioEngineTests: XCTestCase {
     func test_start_doesNotThrow() throws {
         let state = SharedState()
         let engine = TachToneAudioEngine(state: state)
-        XCTAssertNoThrow(try engine.start())
+        try engine.start()
         engine.stop()
     }
 

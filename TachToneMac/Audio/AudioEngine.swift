@@ -4,6 +4,9 @@ import AVFoundation
 // render callback, which runs on a dedicated real-time audio thread.
 // AppDelegate calls start() once on the main thread before the callback begins.
 // No voice state is accessed from any other thread.
+// NOTE: The render callback calls sharedState.snapshot(), which acquires an NSLock.
+// This is a known audio-thread tradeoff — the lock is uncontended in normal operation
+// (pollers hold it for microseconds). A lock-free approach can be adopted if glitches occur.
 final class TachToneAudioEngine: @unchecked Sendable {
     private let avEngine = AVAudioEngine()
     private var sourceNode: AVAudioSourceNode?
