@@ -2,6 +2,8 @@ import AppKit
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
+    private let sharedState = SharedState()
+    private lazy var cpuPoller = CpuPoller(state: sharedState)
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
@@ -14,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "Quit TachTone", action: #selector(quit), keyEquivalent: "q"))
         statusItem?.menu = menu
+
+        cpuPoller.start()
     }
 
     @objc private func quit() {
