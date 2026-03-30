@@ -6,6 +6,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private lazy var cpuPoller = CpuPoller(state: sharedState)
     private lazy var networkPoller = NetworkPoller(state: sharedState)
     private lazy var diskPoller = DiskPoller(state: sharedState)
+    private lazy var gpuPoller = GpuPoller(state: sharedState)
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
@@ -22,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         cpuPoller.start()
         networkPoller.start()
         diskPoller.start()
+        gpuPoller.start()
     }
 
     @objc private func quit() {
