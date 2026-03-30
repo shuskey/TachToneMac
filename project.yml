@@ -1,0 +1,40 @@
+name: TachToneMac
+options:
+  bundleIdPrefix: com.tachtone
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+
+targets:
+  TachToneMac:
+    type: application
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: TachToneMac
+    info:
+      path: TachToneMac/Info.plist
+      properties:
+        LSUIElement: true
+        NSPrincipalClass: NSApplication
+    settings:
+      base:
+        SWIFT_VERSION: "6.0"
+        PRODUCT_BUNDLE_IDENTIFIER: com.tachtone.TachToneMac
+    dependencies:
+      - sdk: IOKit.framework
+      - sdk: Network.framework
+
+  TachToneMacTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: TachToneMacTests
+    dependencies:
+      - target: TachToneMac
+    settings:
+      base:
+        SWIFT_VERSION: "6.0"
+        PRODUCT_BUNDLE_IDENTIFIER: com.tachtone.TachToneMacTests
+        GENERATE_INFOPLIST_FILE: YES

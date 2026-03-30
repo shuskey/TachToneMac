@@ -1,0 +1,5 @@
+TachToneMac.xcodeproj/
+*.xcworkspace/
+.DS_Store
+build/
+DerivedData/
