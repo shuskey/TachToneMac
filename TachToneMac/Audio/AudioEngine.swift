@@ -81,7 +81,7 @@ final class TachToneAudioEngine: @unchecked Sendable {
             let coinCh  = Float(snapshot.coinVol)    / 100.0
 
             for i in 0..<count {
-                var s = master * cpuCh  * self.cpuBuffer[i]
+                let s = master * cpuCh  * self.cpuBuffer[i]
                       + master * 0.27 * netCh  * (self.bellBuffer[i] + self.pianoBuffer[i])
                       + master * 0.35 * diskCh * self.diskBuffer[i]
                       + master * honkCh          * self.honkBuffer[i]
