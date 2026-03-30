@@ -1,6 +1,10 @@
 import Foundation
 import Network
 
+// SAFETY: @unchecked Sendable is intentional.
+// `handleDatagram` and timer callbacks can run on different threads.
+// `timerQueue` serialises all timer mutations (start/cancel/flag writes).
+// `SharedState` handles its own locking independently.
 final class HonkListener: @unchecked Sendable {
     private let state: SharedState
     private let port: NWEndpoint.Port
@@ -23,6 +27,8 @@ final class HonkListener: @unchecked Sendable {
     func start() {
         let params = NWParameters.udp
         params.allowLocalEndpointReuse = true
+        // Bind explicitly to loopback so only local processes can send datagrams
+        params.requiredLocalEndpoint = NWEndpoint.hostPort(host: "127.0.0.1", port: port)
         guard let listener = try? NWListener(using: params, on: port) else { return }
         self.listener = listener
 

@@ -28,6 +28,7 @@ final class HonkListenerTests: XCTestCase {
         listener.handleDatagram("claude task complete")
         XCTAssertTrue(state.snapshot().honk)
         XCTAssertFalse(listener.impatientTimerActive)
+        XCTAssertFalse(listener.approvalTimerActive)
     }
 
     func test_preToolUse_cancelsImpatientStartsApproval() {
