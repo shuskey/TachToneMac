@@ -5,13 +5,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let sharedState = SharedState()
     private lazy var cpuPoller = CpuPoller(state: sharedState)
     private lazy var networkPoller = NetworkPoller(state: sharedState)
+    private lazy var diskPoller = DiskPoller(state: sharedState)
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         if let button = statusItem?.button {
-            button.title = "T"   // placeholder — Plan 3 draws the tachometer icon
+            button.title = "T"
         }
 
         let menu = NSMenu()
@@ -20,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         cpuPoller.start()
         networkPoller.start()
+        diskPoller.start()
     }
 
     @objc private func quit() {
