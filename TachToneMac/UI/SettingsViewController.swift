@@ -10,6 +10,7 @@ final class SettingsViewController: NSViewController {
     var diskSlider:        NSSlider!
     var gpuSlider:         NSSlider!
     var honkSlider:        NSSlider!
+    var coinSlider:        NSSlider!
     var impatientCheckbox: NSButton!
 
     // Maps each slider to its numeric readout label
@@ -23,7 +24,7 @@ final class SettingsViewController: NSViewController {
     required init?(coder: NSCoder) { fatalError("use init(state:)") }
 
     override func loadView() {
-        view = NSView(frame: NSRect(x: 0, y: 0, width: 320, height: 300))
+        view = NSView(frame: NSRect(x: 0, y: 0, width: 320, height: 330))
     }
 
     override func viewDidLoad() {
@@ -59,14 +60,16 @@ final class SettingsViewController: NSViewController {
         diskSlider    = makeSlider()
         gpuSlider     = makeSlider()
         honkSlider    = makeSlider()
+        coinSlider    = makeSlider()
 
         let rows: [(String, NSSlider)] = [
-            ("Master",  masterSlider),
-            ("CPU",     cpuSlider),
-            ("Network", networkSlider),
-            ("Disk",    diskSlider),
-            ("GPU",     gpuSlider),
-            ("Honk",    honkSlider),
+            ("Master",      masterSlider),
+            ("CPU",         cpuSlider),
+            ("Network",     networkSlider),
+            ("Disk",        diskSlider),
+            ("GPU",         gpuSlider),
+            ("Honk",        honkSlider),
+            ("Token Cost",  coinSlider),
         ]
         for (label, slider) in rows {
             stack.addArrangedSubview(makeRow(label: label, slider: slider))
@@ -115,6 +118,7 @@ final class SettingsViewController: NSViewController {
         apply(diskSlider,    value: s.diskVol)
         apply(gpuSlider,     value: s.gpuVol)
         apply(honkSlider,    value: s.honkVol)
+        apply(coinSlider,    value: s.coinVol)
         impatientCheckbox.state = s.impatientHonkingEnabled ? .on : .off
     }
 
@@ -136,6 +140,7 @@ final class SettingsViewController: NSViewController {
             else if s === self.diskSlider    { state.diskVol    = val }
             else if s === self.gpuSlider     { state.gpuVol     = val }
             else if s === self.honkSlider    { state.honkVol    = val }
+            else if s === self.coinSlider    { state.coinVol    = val }
         }
     }
 

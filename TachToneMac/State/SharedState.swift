@@ -20,10 +20,12 @@ final class SharedState: @unchecked Sendable {
         var diskVol: Int = 50
         var gpuVol: Int = 50
         var honkVol: Int = 100
+        var coinVol: Int = 80
         // One-shot flags
         var honk: Bool = false
         var impatientHonk: Bool = false
         var impatientHonkingEnabled: Bool = true
+        var coinCount: Int = 0
     }
 
     private let lock = NSLock()
@@ -46,5 +48,11 @@ final class SharedState: @unchecked Sendable {
         defer { lock.unlock() }
         values.honk = false
         values.impatientHonk = false
+    }
+
+    func clearCoinCount() {
+        lock.lock()
+        defer { lock.unlock() }
+        values.coinCount = 0
     }
 }

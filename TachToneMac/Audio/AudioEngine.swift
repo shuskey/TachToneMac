@@ -18,6 +18,7 @@ final class TachToneAudioEngine: @unchecked Sendable {
     private var diskVoice    = DiskVoice()
     private var gpuVoice     = GpuVoice()
     private var honkVoice    = HonkVoice()
+    private var coinVoice    = CoinVoice()
 
     // Pre-allocated mix buffers — no allocation in the real-time callback
     private var cpuBuffer    = [Float](repeating: 0, count: 4096)
@@ -26,6 +27,7 @@ final class TachToneAudioEngine: @unchecked Sendable {
     private var diskBuffer   = [Float](repeating: 0, count: 4096)
     private var gpuBuffer    = [Float](repeating: 0, count: 4096)
     private var honkBuffer   = [Float](repeating: 0, count: 4096)
+    private var coinBuffer   = [Float](repeating: 0, count: 4096)
 
     init(state: SharedState) { self.sharedState = state }
 
@@ -53,6 +55,13 @@ final class TachToneAudioEngine: @unchecked Sendable {
                 snapshot = self.sharedState.snapshot()
             }
 
+            // Handle coin count (token cost feedback)
+            if snapshot.coinCount > 0 {
+                self.coinVoice.triggerCoins(snapshot.coinCount)
+                self.sharedState.clearCoinCount()
+                snapshot = self.sharedState.snapshot()
+            }
+
             // Render all voices
             self.cpuVoice.render(into: &self.cpuBuffer, frameCount: count, snapshot: snapshot)
             self.networkVoice.render(bellBuffer: &self.bellBuffer, pianoBuffer: &self.pianoBuffer,
@@ -60,6 +69,7 @@ final class TachToneAudioEngine: @unchecked Sendable {
             self.diskVoice.render(into: &self.diskBuffer, frameCount: count, snapshot: snapshot)
             self.gpuVoice.render(into: &self.gpuBuffer, frameCount: count, snapshot: snapshot)
             self.honkVoice.render(into: &self.honkBuffer, frameCount: count)
+            self.coinVoice.render(into: &self.coinBuffer, frameCount: count)
 
             // Mix (spec formula)
             let master  = Float(snapshot.volume)     / 100.0
@@ -68,6 +78,7 @@ final class TachToneAudioEngine: @unchecked Sendable {
             let diskCh  = Float(snapshot.diskVol)    / 100.0
             let gpuCh   = Float(snapshot.gpuVol)     / 100.0
             let honkCh  = Float(snapshot.honkVol)    / 100.0
+            let coinCh  = Float(snapshot.coinVol)    / 100.0
 
             for i in 0..<count {
                 var s = master * cpuCh  * self.cpuBuffer[i]
@@ -75,6 +86,7 @@ final class TachToneAudioEngine: @unchecked Sendable {
                       + master * 0.35 * diskCh * self.diskBuffer[i]
                       + master * honkCh          * self.honkBuffer[i]
                       + master * 0.30 * gpuCh  * self.gpuBuffer[i]
+                      + master * coinCh          * self.coinBuffer[i]
                 out[i] = max(-1.0, min(1.0, s))
             }
             return noErr

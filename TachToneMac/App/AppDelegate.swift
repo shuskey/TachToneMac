@@ -30,7 +30,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         diskPoller.start()
         gpuPoller.start()
         honkListener.start()
-        try? audioEngine.start()
+        do {
+            try audioEngine.start()
+        } catch {
+            print("TachTone: audioEngine failed to start — \(error)")
+        }
     }
 
     @objc func openSettings() {

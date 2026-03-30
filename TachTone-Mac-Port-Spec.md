@@ -60,9 +60,11 @@ All live data lives in one shared, thread-safe container. Every poller writes in
 | `disk_vol` | int | 50 | Disk tom-tom channel, 0–100 |
 | `gpu_vol` | int | 50 | GPU organ channel, 0–100 |
 | `honk_vol` | int | 100 | Horn channel, 0–100 |
+| `coin_vol` | int | 80 | Token cost coin channel, 0–100 |
 | `honk` | bool | false | One-shot flag: trigger a standard double-honk |
 | `impatient_honk` | bool | false | One-shot flag: trigger the impatient horn sequence |
 | `impatient_honking_enabled` | bool | true | Whether the impatient timer fires |
+| `coin_count` | int | 0 | One-shot: play this many coin chirps (1–10), then reset to 0 |
 
 The audio engine reads these as a single consistent snapshot. One-shot flags (`honk`, `impatient_honk`) are cleared by the audio engine immediately after it acts on them.
 
@@ -100,13 +102,17 @@ Each poller samples its metric every **500ms** and writes into SharedState.
 |---|---|
 | `"need attention"` | Trigger standard honk + start 30s impatient timer |
 | `"got attention"` | Cancel all timers |
+| `"user_prompt_submit"` | Cancel all timers (user is actively submitting — reset all pending alerts) |
 | `"claude task complete"` | Cancel all timers + trigger standard honk |
 | `"pre_tool_use"` | Cancel impatient timer + start 8s approval timer |
 | `"post_tool_use"` | Cancel approval timer |
+| `"coins:N"` (N = 1–10) | Trigger N coin chirps to indicate token cost of the last response |
 
 **Impatient timer**: if `"need attention"` is received and the user does not respond within 30 seconds, fire the impatient horn sequence.
 
 **Approval timer**: if `"pre_tool_use"` fires but `"post_tool_use"` does not arrive within 8 seconds, Claude is assumed to be waiting at a tool-approval dialog — fire a standard honk and restart the impatient timer.
+
+**`user_prompt_submit`**: fired by a global Claude Code `UserPromptSubmit` hook the moment the user sends a new message. This cancels both the impatient and approval timers immediately — the user is clearly present and engaged, so any pending horn alerts are no longer warranted.
 
 ---
 
@@ -127,6 +133,7 @@ output = clip(
   + master * 0.35     * disk_ch * tom
   + master * honk_ch  * honk
   + master * 0.30     * gpu_ch  * organ
+  + master * coin_ch  * coin
 , -1.0, 1.0)
 ```
 
@@ -280,6 +287,38 @@ Pre-render the entire sequence as a buffer at trigger time. Stream from the buff
 
 ---
 
+### Voice 6: Token Cost Coin
+
+A series of 1–10 short rising-pitch chirps, like the Mario coin-block sound. Fires once after each Claude response to indicate how expensive that response was.
+
+**Each chirp**:
+
+- Duration: 90ms
+- Frequency sweep: 988 Hz (B5) → 1319 Hz (E6), linear
+- 5ms attack, 25ms release
+- Gap between coins: 90ms silence
+
+**Coin count → cost mapping** (Sonnet pricing, $3/$15 per M input/output tokens):
+
+| Coins | Estimated cost |
+| ----- | -------------- |
+| 1 | < $0.010 |
+| 2 | $0.010 – $0.025 |
+| 3 | $0.025 – $0.050 |
+| 4 | $0.050 – $0.080 |
+| 5 | $0.080 – $0.120 |
+| 6 | $0.120 – $0.180 |
+| 7 | $0.180 – $0.270 |
+| 8 | $0.270 – $0.400 |
+| 9 | $0.400 – $0.600 |
+| 10 | ≥ $0.600 |
+
+The mapping is computed by `~/.claude/token_coins.py`, which reads the session transcript path from the `Stop` hook's JSON payload, sums token usage for the current turn, and sends `"coins:N"` to TachTone via UDP.
+
+Pre-render all N chirps (with gaps) as a buffer at trigger time. Stream from the buffer each audio callback until exhausted.
+
+---
+
 ## Menu Bar UI
 
 - App lives exclusively in the menu bar. No Dock icon (`LSUIElement = true` in `Info.plist`).
@@ -302,7 +341,8 @@ A simple floating panel (not a full window). All controls are live — they upda
 - Network Bell/Piano
 - Disk Tom
 - GPU Organ
-- Honk Honk
+- Honk
+- Token Cost
 
 **Toggle**:
 - "Include impatient honking" checkbox (default: on)
@@ -326,22 +366,33 @@ Add this to `~/.claude/settings.json` on the Mac:
   "hooks": {
     "Notification": [
       {
-        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c \"import socket; socket.socket(socket.AF_INET, socket.SOCK_DGRAM).sendto(b'need attention', ('127.0.0.1', 9876))\""
+            "command": "python3 -c 'import socket; s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM); s.sendto(b\"need attention\",(\"127.0.0.1\",9876)); s.close()'",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c 'import socket; s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM); s.sendto(b\"user_prompt_submit\",(\"127.0.0.1\",9876)); s.close()'",
+            "async": true
           }
         ]
       }
     ],
     "Stop": [
       {
-        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c \"import socket; socket.socket(socket.AF_INET, socket.SOCK_DGRAM).sendto(b'claude task complete', ('127.0.0.1', 9876))\""
+            "command": "python3 /Users/shuskey/.claude/token_coins.py",
+            "async": true
           }
         ]
       }
@@ -352,7 +403,8 @@ Add this to `~/.claude/settings.json` on the Mac:
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c \"import socket; socket.socket(socket.AF_INET, socket.SOCK_DGRAM).sendto(b'pre_tool_use', ('127.0.0.1', 9876))\""
+            "command": "python3 -c 'import socket; s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM); s.sendto(b\"pre_tool_use\",(\"127.0.0.1\",9876)); s.close()'",
+            "async": true
           }
         ]
       }
@@ -363,7 +415,8 @@ Add this to `~/.claude/settings.json` on the Mac:
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c \"import socket; socket.socket(socket.AF_INET, socket.SOCK_DGRAM).sendto(b'post_tool_use', ('127.0.0.1', 9876))\""
+            "command": "python3 -c 'import socket; s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM); s.sendto(b\"post_tool_use\",(\"127.0.0.1\",9876)); s.close()'",
+            "async": true
           }
         ]
       }
@@ -372,7 +425,7 @@ Add this to `~/.claude/settings.json` on the Mac:
 }
 ```
 
-The hook scripts use `python3` (always available on macOS) purely to send a UDP packet — this is a one-liner with no dependencies. The TachTone app itself does not need to be Python.
+The `Stop` hook calls `~/.claude/token_coins.py` rather than a one-liner — it reads the session transcript to compute token cost and sends `"coins:N"`. All other hooks are simple UDP one-liners with no dependencies. The TachTone app itself does not need to be Python.
 
 ---
 

@@ -29,7 +29,7 @@ final class HonkListener: @unchecked Sendable {
         params.allowLocalEndpointReuse = true
         // Bind explicitly to loopback so only local processes can send datagrams
         params.requiredLocalEndpoint = NWEndpoint.hostPort(host: "127.0.0.1", port: port)
-        guard let listener = try? NWListener(using: params, on: port) else { return }
+        guard let listener = try? NWListener(using: params) else { return }
         self.listener = listener
 
         listener.newConnectionHandler = { [weak self] connection in
@@ -46,7 +46,7 @@ final class HonkListener: @unchecked Sendable {
             state.update { $0.honk = true }
             startImpatientTimer()
 
-        case "got attention":
+        case "got attention", "user_prompt_submit":
             cancelImpatientTimer()
             cancelApprovalTimer()
 
@@ -63,7 +63,10 @@ final class HonkListener: @unchecked Sendable {
             cancelApprovalTimer()
 
         default:
-            break
+            if message.hasPrefix("coins:"),
+               let n = Int(message.dropFirst(6)), n > 0 {
+                state.update { $0.coinCount = min(n, 10) }
+            }
         }
     }
 
@@ -129,13 +132,13 @@ final class HonkListener: @unchecked Sendable {
     }
 
     private func receiveNextDatagram(on connection: NWConnection) {
-        connection.receiveMessage { [weak self] data, _, _, error in
+        connection.receiveMessage { [weak self] data, _, _, _ in
             if let data, let message = String(data: data, encoding: .utf8) {
                 self?.handleDatagram(message.trimmingCharacters(in: .whitespacesAndNewlines))
             }
-            if error == nil {
-                self?.receiveNextDatagram(on: connection)
-            }
+            // Each nc invocation is a one-shot sender on a unique ephemeral port.
+            // Cancel immediately to avoid accumulating idle NWConnections.
+            connection.cancel()
         }
     }
 }
