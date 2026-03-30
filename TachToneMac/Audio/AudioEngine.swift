@@ -12,7 +12,8 @@ final class TachToneAudioEngine: @unchecked Sendable {
     private var sourceNode: AVAudioSourceNode?
     private let sharedState: SharedState
 
-    // Pre-allocated mix buffers — never reallocated in the callback
+    private var cpuVoice = CpuVoice()
+
     private var cpuBuffer    = [Float](repeating: 0, count: 4096)
     private var bellBuffer   = [Float](repeating: 0, count: 4096)
     private var pianoBuffer  = [Float](repeating: 0, count: 4096)
@@ -20,9 +21,7 @@ final class TachToneAudioEngine: @unchecked Sendable {
     private var gpuBuffer    = [Float](repeating: 0, count: 4096)
     private var honkBuffer   = [Float](repeating: 0, count: 4096)
 
-    init(state: SharedState) {
-        self.sharedState = state
-    }
+    init(state: SharedState) { self.sharedState = state }
 
     func start() throws {
         let format = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 1)!
@@ -34,10 +33,18 @@ final class TachToneAudioEngine: @unchecked Sendable {
 
             let count = Int(frameCount)
             let snapshot = self.sharedState.snapshot()
-            _ = snapshot
 
-            // Zero all output (voices added in Tasks 2–6)
-            for i in 0..<count { out[i] = 0 }
+            self.cpuVoice.render(into: &self.cpuBuffer, frameCount: count, snapshot: snapshot)
+
+            let master = Float(snapshot.volume) / 100.0
+            let cpuCh  = Float(snapshot.cpuVol)  / 100.0
+
+            for i in 0..<count {
+                var s = master * cpuCh * self.cpuBuffer[i]
+                // net, disk, gpu, honk voices added in Tasks 3–6
+                s = max(-1.0, min(1.0, s))
+                out[i] = s
+            }
             return noErr
         }
 
@@ -47,7 +54,5 @@ final class TachToneAudioEngine: @unchecked Sendable {
         try avEngine.start()
     }
 
-    func stop() {
-        avEngine.stop()
-    }
+    func stop() { avEngine.stop() }
 }
