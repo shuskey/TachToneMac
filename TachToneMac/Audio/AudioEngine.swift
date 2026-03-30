@@ -15,6 +15,7 @@ final class TachToneAudioEngine: @unchecked Sendable {
     private var cpuVoice     = CpuVoice()
     private var networkVoice = NetworkVoice()
     private var diskVoice    = DiskVoice()
+    private var gpuVoice     = GpuVoice()
 
     private var cpuBuffer    = [Float](repeating: 0, count: 4096)
     private var bellBuffer   = [Float](repeating: 0, count: 4096)
@@ -40,17 +41,20 @@ final class TachToneAudioEngine: @unchecked Sendable {
             self.networkVoice.render(bellBuffer: &self.bellBuffer, pianoBuffer: &self.pianoBuffer,
                                      frameCount: count, snapshot: snapshot)
             self.diskVoice.render(into: &self.diskBuffer, frameCount: count, snapshot: snapshot)
+            self.gpuVoice.render(into: &self.gpuBuffer, frameCount: count, snapshot: snapshot)
 
             let master  = Float(snapshot.volume)     / 100.0
             let cpuCh   = Float(snapshot.cpuVol)     / 100.0
             let netCh   = Float(snapshot.networkVol) / 100.0
             let diskCh  = Float(snapshot.diskVol)    / 100.0
+            let gpuCh   = Float(snapshot.gpuVol)     / 100.0
 
             for i in 0..<count {
                 var s = master * cpuCh  * self.cpuBuffer[i]
                       + master * 0.27 * netCh  * (self.bellBuffer[i] + self.pianoBuffer[i])
                       + master * 0.35 * diskCh * self.diskBuffer[i]
-                // gpu, honk added in Tasks 5–6
+                      + master * 0.30 * gpuCh  * self.gpuBuffer[i]
+                // honk added in Task 6
                 s = max(-1.0, min(1.0, s))
                 out[i] = s
             }
