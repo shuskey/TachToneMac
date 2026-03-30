@@ -86,7 +86,7 @@ final class NetworkPoller: @unchecked Sendable {
             let name = String(cString: cursor.pointee.ifa_name)
             if cursor.pointee.ifa_addr?.pointee.sa_family == UInt8(AF_LINK),
                let data = cursor.pointee.ifa_data {
-                let networkData = data.bindMemory(to: if_data.self, capacity: 1).pointee
+                let networkData = data.assumingMemoryBound(to: if_data.self).pointee
                 if name == adapterName {
                     targetRecv = UInt64(networkData.ifi_ibytes)
                     targetSend = UInt64(networkData.ifi_obytes)
