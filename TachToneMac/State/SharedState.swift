@@ -1,5 +1,7 @@
 import Foundation
 
+// SAFETY: All mutable state is protected by `lock`. No property is ever
+// accessed without holding the lock, so cross-actor use is safe.
 final class SharedState: @unchecked Sendable {
 
     struct Values {
