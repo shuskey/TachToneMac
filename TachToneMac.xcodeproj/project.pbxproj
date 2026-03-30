@@ -1,0 +1,599 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		08A8D6EC6E81F5B7383BA87E /* PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54716179AB72399B2A7FD8CC /* PlaceholderTests.swift */; };
+		0E447BD31B0FBF68B9730BBC /* DiskVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9CCDB07B250FFAFD1CBD1 /* DiskVoice.swift */; };
+		1547190A623E365E23C1EA42 /* CpuPollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C94190AD4AC6881229886 /* CpuPollerTests.swift */; };
+		1C3453D2C3DED3CA7B83503B /* AudioEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BEF045018D1581575C8DCC /* AudioEngineTests.swift */; };
+		2831041CEFEB484B6672213F /* NetworkPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45DA5DF13D8C91A896FD858 /* NetworkPoller.swift */; };
+		2B56105A60F434E6986959D1 /* NetworkVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E91D4C0834C3E7700E2174A /* NetworkVoice.swift */; };
+		2C90B983D502AAFCC96FDC5D /* NetworkVoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF0F29D031B538D4B0CCF09 /* NetworkVoiceTests.swift */; };
+		3B2B0B53EF9FB21C2E99663E /* DiskPollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC71AB61BCCC6DB6438BD7 /* DiskPollerTests.swift */; };
+		404B2FFBBFC8B7CB5432566F /* CpuPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C97501222790B6F853EE7B /* CpuPoller.swift */; };
+		41B0E1867E69C68FF72B1351 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C882D383CB161C5D207E1EE /* AppDelegate.swift */; };
+		488077D99D3E5B7801792AE4 /* HonkListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A2B68ED61FF387CEDFC6F /* HonkListener.swift */; };
+		490718445ED2CA1DD1D92FFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F9C33B58BEB38184B21993 /* SettingsViewController.swift */; };
+		4D21CE0E8295F093D5757B9A /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843E4D98BC96966997F92C73 /* AppDelegateTests.swift */; };
+		5003EA77E3FC90586C47962C /* GpuVoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D8CCBDF25125E9ABA9DEB6 /* GpuVoiceTests.swift */; };
+		10C82B1F432A4B82B2119465 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6397B3FDE6454CA917F602 /* ServiceManagement.framework */; };
+		5285B01176D7C3DD09E84B36 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 419EA69920817D38356476FB /* Network.framework */; };
+		568E038D039241BDBB5BF8D1 /* CoinVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9141217197724601BF98A531 /* CoinVoice.swift */; };
+		6047B3CE50C5072053FD062D /* GpuVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ABD22A3EC4EF148FDE651C /* GpuVoice.swift */; };
+		62018A73C98E680B8F91CF66 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F67F6E1EFB6A7C8906F928 /* IOKit.framework */; };
+		6CA5988A1CEB64832C6B2BAA /* HonkListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA4BC904381720619505F54 /* HonkListenerTests.swift */; };
+		6CF04236667CF93998487DE5 /* SharedStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809C97A529A24A70752CCA3 /* SharedStateTests.swift */; };
+		70EF8A48021CE79AC765B662 /* HonkVoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FC66FC926FE0E5837AB32F /* HonkVoiceTests.swift */; };
+		71AD41FD4FC14F185793B23E /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A681365743AD95E98405F5A2 /* SharedState.swift */; };
+		7E92DA1792285EDE9E70B696 /* DiskVoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9660B9007C3AF60B56987FA /* DiskVoiceTests.swift */; };
+		947FBA789A21BC6E28C549A7 /* CpuVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B60E14135CEC2593371844 /* CpuVoice.swift */; };
+		97BF4C04E6D72E2BA367DE51 /* GpuPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24663240DA4EF8EEAE7935F1 /* GpuPoller.swift */; };
+		B7B00773B1F43B4872978D7C /* DiskPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF070378C66B5E2C7480812F /* DiskPoller.swift */; };
+		C7B699F7B600E236503177A5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3981246AE18F56C754824A1 /* main.swift */; };
+		D002457DD1EF2D89AB85D70D /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7796BAC41EB6523A273B8B5E /* AudioEngine.swift */; };
+		D12359BADA2CF15F9A2C7BDC /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E2C5A9A209B9A0D81A73A4 /* SettingsViewControllerTests.swift */; };
+		DC55FAE7B6F0D8AA8CC9AD98 /* CpuVoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA4047C88867FC1525E3D9 /* CpuVoiceTests.swift */; };
+		DFC641CDF63E573A491C8DA9 /* GpuPollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD97F651B77A785FF2C94C6 /* GpuPollerTests.swift */; };
+		EC56B670AB2C1836F5FBF727 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85682AD687010C3769DD272A /* Assets.xcassets */; };
+		F1411B7878E51DF9F184C485 /* NetworkPollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FD7B590E356521B96BBCA8 /* NetworkPollerTests.swift */; };
+		F94FAE671991B329CA5B6544 /* HonkVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD6E854F45D6A84A4FC7E80 /* HonkVoice.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E208CF95535976899C4AB716 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E793141BE5593C7CE7F75F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A4DE1BCCFB9A11673D141BEA;
+			remoteInfo = TachToneMac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0DA4BC904381720619505F54 /* HonkListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HonkListenerTests.swift; sourceTree = "<group>"; };
+		1C882D383CB161C5D207E1EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1E91D4C0834C3E7700E2174A /* NetworkVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVoice.swift; sourceTree = "<group>"; };
+		24663240DA4EF8EEAE7935F1 /* GpuPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpuPoller.swift; sourceTree = "<group>"; };
+		24AC71AB61BCCC6DB6438BD7 /* DiskPollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskPollerTests.swift; sourceTree = "<group>"; };
+		2ABA4047C88867FC1525E3D9 /* CpuVoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuVoiceTests.swift; sourceTree = "<group>"; };
+		3E6397B3FDE6454CA917F602 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		419EA69920817D38356476FB /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
+		42D8CCBDF25125E9ABA9DEB6 /* GpuVoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpuVoiceTests.swift; sourceTree = "<group>"; };
+		4AD6E854F45D6A84A4FC7E80 /* HonkVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HonkVoice.swift; sourceTree = "<group>"; };
+		54716179AB72399B2A7FD8CC /* PlaceholderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTests.swift; sourceTree = "<group>"; };
+		56FC66FC926FE0E5837AB32F /* HonkVoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HonkVoiceTests.swift; sourceTree = "<group>"; };
+		67BEF045018D1581575C8DCC /* AudioEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineTests.swift; sourceTree = "<group>"; };
+		6BF0F29D031B538D4B0CCF09 /* NetworkVoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVoiceTests.swift; sourceTree = "<group>"; };
+		70F67F6E1EFB6A7C8906F928 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		7796BAC41EB6523A273B8B5E /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		7E7F2D7F9DC131270F2EDB7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		81B60E14135CEC2593371844 /* CpuVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuVoice.swift; sourceTree = "<group>"; };
+		843E4D98BC96966997F92C73 /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
+		85682AD687010C3769DD272A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D7D7E60FD91955A0B2FACB2 /* TachToneMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TachToneMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FD97F651B77A785FF2C94C6 /* GpuPollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpuPollerTests.swift; sourceTree = "<group>"; };
+		900C418FFCC2D0631AE9E47A /* TachToneMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TachToneMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92C97501222790B6F853EE7B /* CpuPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuPoller.swift; sourceTree = "<group>"; };
+		9141217197724601BF98A531 /* CoinVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinVoice.swift; sourceTree = "<group>"; };
+		97ABD22A3EC4EF148FDE651C /* GpuVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpuVoice.swift; sourceTree = "<group>"; };
+		9809C97A529A24A70752CCA3 /* SharedStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStateTests.swift; sourceTree = "<group>"; };
+		990C94190AD4AC6881229886 /* CpuPollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuPollerTests.swift; sourceTree = "<group>"; };
+		A681365743AD95E98405F5A2 /* SharedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedState.swift; sourceTree = "<group>"; };
+		A9660B9007C3AF60B56987FA /* DiskVoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskVoiceTests.swift; sourceTree = "<group>"; };
+		B1FD7B590E356521B96BBCA8 /* NetworkPollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPollerTests.swift; sourceTree = "<group>"; };
+		C0E2C5A9A209B9A0D81A73A4 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
+		D45DA5DF13D8C91A896FD858 /* NetworkPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPoller.swift; sourceTree = "<group>"; };
+		E8F9C33B58BEB38184B21993 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F3981246AE18F56C754824A1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F52A2B68ED61FF387CEDFC6F /* HonkListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HonkListener.swift; sourceTree = "<group>"; };
+		FDC9CCDB07B250FFAFD1CBD1 /* DiskVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskVoice.swift; sourceTree = "<group>"; };
+		FF070378C66B5E2C7480812F /* DiskPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskPoller.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C09BC4FF93EB1F6986C3464 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10C82B1F432A4B82B2119465 /* ServiceManagement.framework in Frameworks */,
+				62018A73C98E680B8F91CF66 /* IOKit.framework in Frameworks */,
+				5285B01176D7C3DD09E84B36 /* Network.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C18B8355ECEC700C613A72E /* State */ = {
+			isa = PBXGroup;
+			children = (
+				A681365743AD95E98405F5A2 /* SharedState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		352F7F32BD3FD5F94EB1A979 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1C882D383CB161C5D207E1EE /* AppDelegate.swift */,
+				F3981246AE18F56C754824A1 /* main.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3F379CA91E29CEAB7654CA6B /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				7796BAC41EB6523A273B8B5E /* AudioEngine.swift */,
+				81B60E14135CEC2593371844 /* CpuVoice.swift */,
+				FDC9CCDB07B250FFAFD1CBD1 /* DiskVoice.swift */,
+				9141217197724601BF98A531 /* CoinVoice.swift */,
+				97ABD22A3EC4EF148FDE651C /* GpuVoice.swift */,
+				4AD6E854F45D6A84A4FC7E80 /* HonkVoice.swift */,
+				1E91D4C0834C3E7700E2174A /* NetworkVoice.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		55316D16E37D9C48C891CDF3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E8F9C33B58BEB38184B21993 /* SettingsViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		5D05538785618ED48DF03B7E /* Listeners */ = {
+			isa = PBXGroup;
+			children = (
+				F52A2B68ED61FF387CEDFC6F /* HonkListener.swift */,
+			);
+			path = Listeners;
+			sourceTree = "<group>";
+		};
+		76A8A332DAFFDA2F03DA87CB = {
+			isa = PBXGroup;
+			children = (
+				B28166D47D790258B44300D7 /* TachToneMac */,
+				B3F6B1CE9646F8126C341D7E /* TachToneMacTests */,
+				AA652F620DE38A0A15C7EF80 /* Frameworks */,
+				952F21DD0AE301A229D5D2DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		911B0A56E5FB4590BDE66A7B /* Pollers */ = {
+			isa = PBXGroup;
+			children = (
+				92C97501222790B6F853EE7B /* CpuPoller.swift */,
+				FF070378C66B5E2C7480812F /* DiskPoller.swift */,
+				24663240DA4EF8EEAE7935F1 /* GpuPoller.swift */,
+				D45DA5DF13D8C91A896FD858 /* NetworkPoller.swift */,
+			);
+			path = Pollers;
+			sourceTree = "<group>";
+		};
+		952F21DD0AE301A229D5D2DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				900C418FFCC2D0631AE9E47A /* TachToneMac.app */,
+				8D7D7E60FD91955A0B2FACB2 /* TachToneMacTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA652F620DE38A0A15C7EF80 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E6397B3FDE6454CA917F602 /* ServiceManagement.framework */,
+				70F67F6E1EFB6A7C8906F928 /* IOKit.framework */,
+				419EA69920817D38356476FB /* Network.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B28166D47D790258B44300D7 /* TachToneMac */ = {
+			isa = PBXGroup;
+			children = (
+				85682AD687010C3769DD272A /* Assets.xcassets */,
+				7E7F2D7F9DC131270F2EDB7C /* Info.plist */,
+				352F7F32BD3FD5F94EB1A979 /* App */,
+				3F379CA91E29CEAB7654CA6B /* Audio */,
+				5D05538785618ED48DF03B7E /* Listeners */,
+				911B0A56E5FB4590BDE66A7B /* Pollers */,
+				0C18B8355ECEC700C613A72E /* State */,
+				55316D16E37D9C48C891CDF3 /* UI */,
+			);
+			path = TachToneMac;
+			sourceTree = "<group>";
+		};
+		B3F6B1CE9646F8126C341D7E /* TachToneMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				843E4D98BC96966997F92C73 /* AppDelegateTests.swift */,
+				67BEF045018D1581575C8DCC /* AudioEngineTests.swift */,
+				990C94190AD4AC6881229886 /* CpuPollerTests.swift */,
+				2ABA4047C88867FC1525E3D9 /* CpuVoiceTests.swift */,
+				24AC71AB61BCCC6DB6438BD7 /* DiskPollerTests.swift */,
+				A9660B9007C3AF60B56987FA /* DiskVoiceTests.swift */,
+				8FD97F651B77A785FF2C94C6 /* GpuPollerTests.swift */,
+				42D8CCBDF25125E9ABA9DEB6 /* GpuVoiceTests.swift */,
+				0DA4BC904381720619505F54 /* HonkListenerTests.swift */,
+				56FC66FC926FE0E5837AB32F /* HonkVoiceTests.swift */,
+				B1FD7B590E356521B96BBCA8 /* NetworkPollerTests.swift */,
+				6BF0F29D031B538D4B0CCF09 /* NetworkVoiceTests.swift */,
+				54716179AB72399B2A7FD8CC /* PlaceholderTests.swift */,
+				C0E2C5A9A209B9A0D81A73A4 /* SettingsViewControllerTests.swift */,
+				9809C97A529A24A70752CCA3 /* SharedStateTests.swift */,
+			);
+			path = TachToneMacTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A4DE1BCCFB9A11673D141BEA /* TachToneMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F062A3C5B876263F9D32D374 /* Build configuration list for PBXNativeTarget "TachToneMac" */;
+			buildPhases = (
+				BCE216006A7E5428810FA950 /* Sources */,
+				D3ADD4B34735485910D2BD45 /* Resources */,
+				9C09BC4FF93EB1F6986C3464 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TachToneMac;
+			packageProductDependencies = (
+			);
+			productName = TachToneMac;
+			productReference = 900C418FFCC2D0631AE9E47A /* TachToneMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F892E7C3FB091548CEA186CF /* TachToneMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A1F3658EB40AB2E96B331E3 /* Build configuration list for PBXNativeTarget "TachToneMacTests" */;
+			buildPhases = (
+				DE767FEB9A831AE6CF8C2275 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9BC13D2DB7E65BA144041EA /* PBXTargetDependency */,
+			);
+			name = TachToneMacTests;
+			packageProductDependencies = (
+			);
+			productName = TachToneMacTests;
+			productReference = 8D7D7E60FD91955A0B2FACB2 /* TachToneMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2E793141BE5593C7CE7F75F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 4DC524BC95144C20ECE73C1F /* Build configuration list for PBXProject "TachToneMac" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 76A8A332DAFFDA2F03DA87CB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 952F21DD0AE301A229D5D2DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A4DE1BCCFB9A11673D141BEA /* TachToneMac */,
+				F892E7C3FB091548CEA186CF /* TachToneMacTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D3ADD4B34735485910D2BD45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC56B670AB2C1836F5FBF727 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCE216006A7E5428810FA950 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41B0E1867E69C68FF72B1351 /* AppDelegate.swift in Sources */,
+				D002457DD1EF2D89AB85D70D /* AudioEngine.swift in Sources */,
+				404B2FFBBFC8B7CB5432566F /* CpuPoller.swift in Sources */,
+				947FBA789A21BC6E28C549A7 /* CpuVoice.swift in Sources */,
+				B7B00773B1F43B4872978D7C /* DiskPoller.swift in Sources */,
+				0E447BD31B0FBF68B9730BBC /* DiskVoice.swift in Sources */,
+				97BF4C04E6D72E2BA367DE51 /* GpuPoller.swift in Sources */,
+				568E038D039241BDBB5BF8D1 /* CoinVoice.swift in Sources */,
+				6047B3CE50C5072053FD062D /* GpuVoice.swift in Sources */,
+				488077D99D3E5B7801792AE4 /* HonkListener.swift in Sources */,
+				F94FAE671991B329CA5B6544 /* HonkVoice.swift in Sources */,
+				2831041CEFEB484B6672213F /* NetworkPoller.swift in Sources */,
+				2B56105A60F434E6986959D1 /* NetworkVoice.swift in Sources */,
+				490718445ED2CA1DD1D92FFE /* SettingsViewController.swift in Sources */,
+				71AD41FD4FC14F185793B23E /* SharedState.swift in Sources */,
+				C7B699F7B600E236503177A5 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE767FEB9A831AE6CF8C2275 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D21CE0E8295F093D5757B9A /* AppDelegateTests.swift in Sources */,
+				1C3453D2C3DED3CA7B83503B /* AudioEngineTests.swift in Sources */,
+				1547190A623E365E23C1EA42 /* CpuPollerTests.swift in Sources */,
+				DC55FAE7B6F0D8AA8CC9AD98 /* CpuVoiceTests.swift in Sources */,
+				3B2B0B53EF9FB21C2E99663E /* DiskPollerTests.swift in Sources */,
+				7E92DA1792285EDE9E70B696 /* DiskVoiceTests.swift in Sources */,
+				DFC641CDF63E573A491C8DA9 /* GpuPollerTests.swift in Sources */,
+				5003EA77E3FC90586C47962C /* GpuVoiceTests.swift in Sources */,
+				6CA5988A1CEB64832C6B2BAA /* HonkListenerTests.swift in Sources */,
+				70EF8A48021CE79AC765B662 /* HonkVoiceTests.swift in Sources */,
+				F1411B7878E51DF9F184C485 /* NetworkPollerTests.swift in Sources */,
+				2C90B983D502AAFCC96FDC5D /* NetworkVoiceTests.swift in Sources */,
+				08A8D6EC6E81F5B7383BA87E /* PlaceholderTests.swift in Sources */,
+				D12359BADA2CF15F9A2C7BDC /* SettingsViewControllerTests.swift in Sources */,
+				6CF04236667CF93998487DE5 /* SharedStateTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D9BC13D2DB7E65BA144041EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A4DE1BCCFB9A11673D141BEA /* TachToneMac */;
+			targetProxy = E208CF95535976899C4AB716 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1F67EB8B294694C939D1BFC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tachtone.TachToneMacTests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TachToneMac.app/Contents/MacOS/TachToneMac";
+			};
+			name = Release;
+		};
+		24530EFFD32C8990031B253D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tachtone.TachToneMacTests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TachToneMac.app/Contents/MacOS/TachToneMac";
+			};
+			name = Debug;
+		};
+		2E368A1569D16F1438CF9DB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TachToneMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tachtone.TachToneMac;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		77EDB6759392CCF540F172CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A9BC530530CF416A5D90F544 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TachToneMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tachtone.TachToneMac;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		CA9A14B5BE515D62FE15313E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4A1F3658EB40AB2E96B331E3 /* Build configuration list for PBXNativeTarget "TachToneMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24530EFFD32C8990031B253D /* Debug */,
+				1F67EB8B294694C939D1BFC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4DC524BC95144C20ECE73C1F /* Build configuration list for PBXProject "TachToneMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA9A14B5BE515D62FE15313E /* Debug */,
+				77EDB6759392CCF540F172CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F062A3C5B876263F9D32D374 /* Build configuration list for PBXNativeTarget "TachToneMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9BC530530CF416A5D90F544 /* Debug */,
+				2E368A1569D16F1438CF9DB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E793141BE5593C7CE7F75F8 /* Project object */;
+}

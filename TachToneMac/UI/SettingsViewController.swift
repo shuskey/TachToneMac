@@ -1,4 +1,5 @@
 import AppKit
+import ServiceManagement
 
 final class SettingsViewController: NSViewController {
     private let sharedState: SharedState
@@ -11,7 +12,8 @@ final class SettingsViewController: NSViewController {
     var gpuSlider:         NSSlider!
     var honkSlider:        NSSlider!
     var coinSlider:        NSSlider!
-    var impatientCheckbox: NSButton!
+    var impatientCheckbox:   NSButton!
+    var launchAtLoginCheckbox: NSButton!
 
     // Maps each slider to its numeric readout label
     private var valueLabels: [NSSlider: NSTextField] = [:]
@@ -24,7 +26,7 @@ final class SettingsViewController: NSViewController {
     required init?(coder: NSCoder) { fatalError("use init(state:)") }
 
     override func loadView() {
-        view = NSView(frame: NSRect(x: 0, y: 0, width: 320, height: 330))
+        view = NSView(frame: NSRect(x: 0, y: 0, width: 320, height: 360))
     }
 
     override func viewDidLoad() {
@@ -78,6 +80,10 @@ final class SettingsViewController: NSViewController {
         impatientCheckbox = NSButton(checkboxWithTitle: "Impatient honking",
                                      target: self, action: #selector(checkboxChanged(_:)))
         stack.addArrangedSubview(impatientCheckbox)
+
+        launchAtLoginCheckbox = NSButton(checkboxWithTitle: "Launch at login",
+                                         target: self, action: #selector(launchAtLoginChanged(_:)))
+        stack.addArrangedSubview(launchAtLoginCheckbox)
     }
 
     private func makeSlider() -> NSSlider {
@@ -120,6 +126,7 @@ final class SettingsViewController: NSViewController {
         apply(honkSlider,    value: s.honkVol)
         apply(coinSlider,    value: s.coinVol)
         impatientCheckbox.state = s.impatientHonkingEnabled ? .on : .off
+        launchAtLoginCheckbox.state = SMAppService.mainApp.status == .enabled ? .on : .off
     }
 
     private func apply(_ slider: NSSlider, value: Int) {
@@ -146,5 +153,18 @@ final class SettingsViewController: NSViewController {
 
     @objc func checkboxChanged(_ sender: NSButton) {
         sharedState.update { $0.impatientHonkingEnabled = sender.state == .on }
+    }
+
+    @objc func launchAtLoginChanged(_ sender: NSButton) {
+        do {
+            if sender.state == .on {
+                try SMAppService.mainApp.register()
+            } else {
+                try SMAppService.mainApp.unregister()
+            }
+        } catch {
+            // Revert checkbox to reflect actual state if the call failed
+            launchAtLoginCheckbox.state = SMAppService.mainApp.status == .enabled ? .on : .off
+        }
     }
 }
