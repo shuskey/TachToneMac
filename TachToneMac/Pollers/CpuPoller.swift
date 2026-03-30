@@ -1,12 +1,16 @@
 import Foundation
 import Darwin
 
+// SAFETY: Mutable `prev*` state is only ever accessed from the single
+// background task started by `start()`. Calling `start()` more than once
+// creates a data race — callers must not do this.
 final class CpuPoller: @unchecked Sendable {
     private let state: SharedState
     private var prevIdle: UInt64 = 0
     private var prevTotal: UInt64 = 0
     private var prevCtxCount: UInt64 = 0
     private var prevTime: Date = .distantPast
+    private var started = false
 
     init(state: SharedState) {
         self.state = state
@@ -44,8 +48,10 @@ final class CpuPoller: @unchecked Sendable {
         prevTime = now
     }
 
-    /// Starts polling every 500ms on a detached background Task.
+    /// Starts polling every 500ms on a detached background Task. Must be called at most once.
     func start() {
+        guard !started else { return }
+        started = true
         Task.detached(priority: .background) { [weak self] in
             while true {
                 try? self?.pollOnce()
