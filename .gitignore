@@ -1,5 +1,24 @@
-TachToneMac.xcodeproj/
-*.xcworkspace/
 .DS_Store
+**/.DS_Store
+
+# Xcode build output
 build/
 DerivedData/
+**/DerivedData/
+
+# Local Xcode/user settings
+*.xcuserstate
+xcuserdata/
+**/xcuserdata/
+TachToneMac.xcodeproj/project.xcworkspace/
+TachToneMac.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Editor / local tool metadata
+.vscode/
+.claude/
+
+# Logs and crash dumps
+*.log
+*.dSYM
+*.dSYM/

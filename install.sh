@@ -77,7 +77,7 @@ if $INSTALL_APP; then
   fi
 
   if $INSTALL_APP; then
-    info "Copying to $INSTALL_DIR…"
+    info "Copying to $INSTALL_DIR..."
     rm -rf "$DEST"
     cp -R "$APP_SRC" "$DEST"
     success "Installed $APP_NAME.app to $INSTALL_DIR"
